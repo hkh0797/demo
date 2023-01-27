@@ -16,5 +16,5 @@ You must modify the application.yml
 </p>
 <p>
 Run : Start DemoApplication.java,
-     and for build, check the build.gradle annotation or enter the vue document from the terminal and build on the screen after typing "vueui".
+     and for build, check the build.gradle annotation or enter the vue document from the terminal and build on the screen after typing "vue ui".
 </p>
