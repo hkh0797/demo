@@ -1,0 +1,30 @@
+spring:
+    datasource:
+        url: jdbc:mariadb://###.###.###.###:####/###
+        driver-class-name: org.mariadb.jdbc.Driver
+        username: ###
+        password: ###
+    jpa:
+        open-in-view: false
+        show-sql: true
+        generate-ddl: false
+        hibernate:
+            ddl-auto: validate
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    h2:
+        console:
+            enabled: true
+            settings:
+                web-allow-others: true
+
+mybatis:
+    configuration:
+        cache-enabled: false
+        use-generated-keys: true
+        lazy-load-trigger-methods: false
+        default-executor-type: reuse
+        jdbc-type-for-null: null
+        call-setters-on-nulls: true
+    # type-aliases-package: com.example.vo
+    # mapper-locations: classpath:mappers/**/*.xml
