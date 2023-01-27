@@ -1,0 +1,21 @@
+/* common.css */
+.demo-list {
+    width: 768px;
+    margin: auto;
+}
+
+.demo-detail {
+    width: 768px;
+    margin: auto;
+    text-align: left;
+}
+
+.demo-contents {
+    padding: 12px 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.common-buttons {
+    padding: 8px;
+    text-align: right;
+}

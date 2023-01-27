@@ -1,0 +1,68 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.springframework.boot' version '3.0.2'
+	id 'io.spring.dependency-management' version '1.1.0'
+    id "com.github.node-gradle.node" version "3.1.0"	//vue ui를 사용안하고 build를 바로 하게 하려면 이걸 쓰자
+}
+
+//vue ui를 사용안하고 build를 바로 하게 하려면 이걸 쓰자
+node {
+    version = '18.12.1'
+    npmVersion = '8.19.2'
+    download = true
+    workDir = file("${project.buildDir}/nodejs")
+    npmWorkDir = file("${project.buildDir}/npm")
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client' // MariaDB
+	runtimeOnly 'com.h2database:h2' // H2
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+/*
+//vue ui를 사용안하고 build를 바로 하게 하려면 이걸 쓰자
+//이미 빌드된 파일 삭제
+task deleteVueArtifact(type: Delete) {
+    delete "src/main/resources/static"
+}
+
+//npm install
+task frontNpmInstall(type: NpmTask) {
+    workingDir = file("${project.projectDir}/frontend")
+    args = ['install']
+}
+
+//npm run build
+task npmBuild(type: NpmTask, dependsOn: ['deleteVueArtifact', 'frontNpmInstall']) {
+    workingDir = file("${project.projectDir}/frontend")
+    args = ['run', 'build']
+}
+
+processResources.dependsOn 'npmBuild'
+*/
